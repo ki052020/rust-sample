@@ -1,0 +1,15 @@
+[package]
+name = "rust-sample"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies.windows-sys]
+version = "*"
+features = [
+	"Win32_Foundation",
+	"Win32_UI_WindowsAndMessaging",
+	"Win32_UI_Controls",
+	"Win32_Graphics_Gdi",
+	"Win32_Storage_FileSystem",
+	"Win32_System_ApplicationInstallationAndServicing",
+]
