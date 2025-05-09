@@ -19,24 +19,22 @@ pub fn str_to_u16(str: &str) -> Vec<u16> {
 		let mut ret_vec = Vec::<u16>::with_capacity(len_u16_with_null);
 		ret_vec.set_len(len_u16_with_null);
 		
-		let mut ptr_dst = ret_vec.as_mut_ptr();
+		let mut idx_dst = 0;
 		let mut idx_src = 0;
 		while let Some((mut code, idx_src_new)) = windows_sys::core::decode_utf8_char(bytes_src, idx_src) {
 			idx_src = idx_src_new;
 
 			if code <= 0xffff {
-				*ptr_dst = code as u16;
-				ptr_dst = ptr_dst.add(1);
+				ret_vec[idx_dst] = code as u16;
+				idx_dst += 1;
 			} else {
 				code -= 0x10000;
-				*ptr_dst = 0xd800 + (code >> 10) as u16;
-				ptr_dst = ptr_dst.add(1);
-				*ptr_dst = 0xdc00 + (code & 0x3ff) as u16;
-				ptr_dst = ptr_dst.add(1);
+				ret_vec[idx_dst] = 0xd800 + (code >> 10) as u16;
+				ret_vec[idx_dst + 1] = 0xdc00 + (code & 0x3ff) as u16;
+				idx_dst += 2;
 			}
 		}
-		*ptr_dst = 0;  // 終端文字
-		
+		ret_vec[idx_dst] = 0;  // 終端文字
 		ret_vec
 	}
 }
