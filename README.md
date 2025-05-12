@@ -1,4 +1,4 @@
-# rust-sample（Windows API を使ってみたい人用）
+# rust-sample（Windows API 用となっています）
 以下の画像にあるような、為替や株式などのチャート分析ツールを作ることが最終目標です。<br>
 Rust 初心者、Windows API 初心者を対象としています。私の備忘録ともなっています^^。
 
