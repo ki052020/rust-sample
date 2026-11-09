@@ -3,5 +3,6 @@
 以下のコードで、wpPnl_top_Btns は、パネルクラスを表すものとする。
 
 //「Close」ボタン
+
 wpPnl_top_Btns->NewItem_Wp<KW_Button>(L"Close", NEW FnObj_OnClkBtn{ [this]{ this->Destroy_Wnd(); } })
 	->CltWidth(80);
